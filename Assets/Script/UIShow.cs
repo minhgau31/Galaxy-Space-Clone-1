@@ -8,6 +8,7 @@ public class UIShow : MonoBehaviour,IObserver
      public PlayerController player;
     public GameObject currentHealthBar;
     private float currentHealthBarSize;
+    public HealthBar healthBar;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,16 +22,15 @@ public class UIShow : MonoBehaviour,IObserver
     }
     public void OnNotify(EventID eventID)
     {
-        if(eventID==EventID.OnBulletHit)
-        {
-            currentHealthBarSize =(float)player.health / (float)player.maxHealth;
-
-            currentHealthBar.transform.localScale = new Vector3(currentHealthBarSize, 0.1075f,1);
-            Debug.Log(currentHealthBarSize);
-            Debug.Log(player.health+"Health");
-            Debug.Log(player.maxHealth+"Max Health");
-            Debug.Log("Notify UISHOW");
-        }
+        //if(eventID==EventID.OnBulletHit)
+        //{
+        //    currentHealthBarSize =(float)player.health / (float)player.maxHealth;
+        //    healthBar.healthBar.transform.localScale = new Vector3(currentHealthBarSize, 0.1075f,1);
+        //    Debug.Log(currentHealthBarSize);
+        //    Debug.Log(player.health+"Health");
+        //    Debug.Log(player.maxHealth+"Max Health");
+        //    Debug.Log("Notify UISHOW");
+        //}
        
     }
     private void OnEnable()
