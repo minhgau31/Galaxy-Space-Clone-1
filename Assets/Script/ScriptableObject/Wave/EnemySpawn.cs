@@ -7,6 +7,7 @@ using UnityEngine;
 public class EnemySpawn
 {
      public int timeStart;
+     public int timeDelay;
      public EnemyType enemyType;
      public int enemyNum;
      public Vector3 Position;

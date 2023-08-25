@@ -4,34 +4,61 @@ using UnityEngine;
 using ToolBox.Pools;
 using TMPro;
 using UnityEngine.UI;
+using System;
+
 public class PlayerController : Subject
 {
-    public int health=150;
+    public int health=100;
     public int maxHealth = 150;
     private float moveSpeed = 8.5f;
+    public float fireRate = 0f;
     [SerializeField] private TextMeshPro healthText;
 
     private Rigidbody2D rb;
     [SerializeField] private GameObject bullet;
     [SerializeField] private GameObject bar;
+    [SerializeField] private GameObject healthBar;
+    private HealthBar healthBarScript;
+    public Bullet bulletScript;
     public VariableJoystick joystick;
     private Vector3 move;
-    
+
 
     // Start is called before the first frame update
+    private void Awake()
+    {
+      
+        GameObject a=Instantiate(healthBar);
+        healthBarScript= a.GetComponent<HealthBar>();
+        healthBarScript.Init(this.gameObject);
+       
+        
+       
+    }
     void Start()
     {
         
         rb = GetComponent<Rigidbody2D>();
         StartCoroutine(ShootingBullet());
+
         
+        fireRate = bulletScript.fireRate;
+
+
+
+
+
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        
         MoveShip();
         UpdateHealthBarAndText();
+        healthBarScript.HealthBarSize(maxHealth, health);
+
     }
     private void UpdateHealthBarAndText()
     {
@@ -74,21 +101,36 @@ public class PlayerController : Subject
         transform.position = Vector3.MoveTowards(transform.position, Target, moveSpeed * Time.deltaTime);
         transform.position = new Vector2(Mathf.Clamp(transform.position.x,-2.8f,2.8f), Mathf.Clamp(transform.position.y, -4.37f, 3.77f));
 
-    }    
+    }  
+    public void LoseHealth(int damage)
+    {
+        health = health - damage;
+        Debug.Log(health);
+    }
     private IEnumerator ShootingBullet()
     {
         while (true) 
         {
-            yield return new WaitForSeconds(0.5f);            
+            bulletScript = bullet.GetComponent<Bullet>();
             bullet.gameObject.Reuse(transform.position, transform.rotation);
-
-
+        
+            yield return new WaitForSeconds(1/bulletScript.bulletDetail.fireRate);
         }
     }
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        health = health - 10;
-        NotifyObserver(EventID.OnBulletHit);
-        Debug.Log("Collision");
+        if (collision.gameObject.tag == "bullet")
+        {
+           
+        }
+        else
+        {
+
+            
+            healthBarScript.HealthBarSize(maxHealth, health);
+            NotifyObserver(EventID.OnBulletHit);
+            Debug.Log("Collision");
+        }
     }
+
 }

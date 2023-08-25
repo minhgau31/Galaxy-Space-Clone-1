@@ -6,15 +6,44 @@ public class HealthBar : MonoBehaviour
 {
     public GameObject maxHealthBar;
     public GameObject healthBar;
+    public GameObject stickedShip;
+    public float Health = 0;
+    public float MaxHealth = 0;
+    public float HealthBarSize1;
 
     public void Start()
     {
         
     }
- 
-    //currentHealthBar.transform.localScale = new Vector3(currentHealthBarSize, 0.1075f,1);
+    public void Init(GameObject _stickedShip)
+    {
+        stickedShip = _stickedShip;               
+        Debug.Log("alo");
+        HealthBarSize1 = 1f;
+        healthBar.transform.localScale = new Vector3(HealthBarSize1, 0.10751f, 1f);
+    }
+
+    public void Update()
+    {
+        
+        FollowShip();
+       
+
+
+    }
     public void FollowShip()
     {
-        //transform.position = Vector3.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
+        transform.position = new Vector3(stickedShip.transform.position.x, stickedShip.transform.position.y-0.2f, stickedShip.transform.position.z);
     }    
+    public void HealthBarSize(float maxHealth, float health)
+    {
+        Health = health;
+        MaxHealth = maxHealth; 
+        HealthBarSize1 = Health / MaxHealth;         
+        healthBar.transform.localScale = new Vector3(HealthBarSize1, 0.10751f, 1f);
+       
+        
+    }
+
+    
 }

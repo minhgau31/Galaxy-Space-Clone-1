@@ -13,4 +13,11 @@ MonoBehaviour:
   m_Name: WaveTable
   m_EditorClassIdentifier: 
   waveList:
+  - enemySpawnList:
+    - timeStart: 0
+      timeDelay: 3
+      enemyType: 1
+      enemyNum: 1
+      Position: {x: 0, y: 0, z: 0}
+      mainPath: {fileID: 3222526481384172227, guid: 24ff3a23d2b76c34ba7972891d77ea81, type: 3}
   - enemySpawnList: []

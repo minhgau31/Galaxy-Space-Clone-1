@@ -46,8 +46,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 139386eba8b346c42837707546a2f3a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealthBar: {fileID: 0}
-  healthBar: {fileID: 0}
+  maxHealthBar: {fileID: 8839947963412662434}
+  healthBar: {fileID: 6390335582625888101}
+  stickedShip: {fileID: 0}
+  Health: 140
+  MaxHealth: 150
+  HealthBarSize1: 0.93333334
+  size: {x: 0.93333334, y: 0.10751, z: 1}
 --- !u!1 &6390335582625888101
 GameObject:
   m_ObjectHideFlags: 0
@@ -73,8 +78,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6390335582625888101}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.50999993, y: 0.8069999, z: -0.004297755}
-  m_LocalScale: {x: 1.0190998, y: 0.10750001, z: 1}
+  m_LocalPosition: {x: -0.496, y: 0.8069999, z: -0.004297755}
+  m_LocalScale: {x: 0.53333336, y: 0.10751, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7900247762646211434}

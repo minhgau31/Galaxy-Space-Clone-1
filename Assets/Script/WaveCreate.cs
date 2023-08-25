@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using ToolBox.Pools; 
 
 public class WaveCreate : MonoBehaviour
 {
@@ -10,6 +11,9 @@ public class WaveCreate : MonoBehaviour
     private int currentEnemyDestroy;
     private WaveDetail.Wave wave;
     private int currentWaveList;
+    public GameObject meteorite;
+    public GameObject BaseShipEnemy;
+   
     // Start is called before the first frame update
     void Start()
     {
@@ -36,7 +40,28 @@ public class WaveCreate : MonoBehaviour
   public  IEnumerator SpawnEnemyList(EnemySpawn spawn)
     {
         yield return new WaitForSeconds(spawn.timeStart);
+        for(int i=0;i<spawn.enemyNum;i++)
+        {
+            //Spawn Enemy
+            GameObject enemy = null;
+            switch(spawn.enemyType)
+            {
+                case EnemyType.Meteorite:
+                meteorite.gameObject.Reuse(new Vector3(transform.position.x+UnityEngine.Random.Range(-3,3),transform.position.y),transform.rotation);
+                 break;
+                case EnemyType.BaseEnemyShip:
+                enemy=BaseShipEnemy.gameObject.Reuse(transform.position,transform.rotation);
+                    BaseShipEnemy baseShipEnemy = enemy.GetComponent<BaseShipEnemy>();
+                    
+                    baseShipEnemy.Init(spawn.mainPath);
+                    
+                   
+                    break;
+                    
 
-        yield return new WaitForSeconds(0.5f);
+            }
+            yield return new WaitForSeconds(spawn.timeDelay);
+        }    
+        
     }
 }
