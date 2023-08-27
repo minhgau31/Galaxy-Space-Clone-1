@@ -12,16 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1baafd2ff60b5db4da759a491b773004, type: 3}
   m_Name: EnemyBullet
   m_EditorClassIdentifier: 
-  bulletStats:
-  - id: 0
-    bulletDamage: 0
-    bulletSpeed: 0
-    fireRate: 0
-  - id: 0
-    bulletDamage: 0
-    bulletSpeed: 0
-    fireRate: 0
-  id: 0
-  bulletDamage: 15
+  id: 5
+  bulletDamage: 5
   bulletSpeed: 5
-  fireRate: 2
+  fireRate: 3
+  bulletStats:
+  - id: 1
+    bulletDamage: 5
+    bulletSpeed: 5
+    fireRate: 5
+  - id: 2
+    bulletDamage: 6
+    bulletSpeed: 6
+    fireRate: 6

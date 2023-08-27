@@ -5,29 +5,39 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    private int damage;
-    public int id;
-    private int bulletSpeed;
-    internal float fireRate;
+    private int damage=0;
+    private int playerID;
+    private int bulletSpeed=0;
+    internal float fireRate=0;
     Rigidbody2D rb;
     public BulletDetail bulletDetail;
- 
+    public BulletDetail.BulletStats bulletStats;
     public BaseShipEnemy bEnemy;
   
 
     // Start is called before the first frame update
     void Awake()
     {
-        damage = bulletDetail.bulletStats[id-1].bulletDamage;
-        bulletSpeed=bulletDetail.bulletStats[id - 1].bulletSpeed;
-        fireRate = bulletDetail.bulletStats[id - 1].fireRate;
 
-        rb= GetComponent<Rigidbody2D>();
-      
+        rb = GetComponent<Rigidbody2D>();
+
+
+
+
+
+    }
+    public void Init(int id, int speed, float _firerate)
+    {
         
+        playerID = id;
+        bulletSpeed = speed;
+        fireRate = _firerate;
+      
+     
     }
     private void OnEnable()
     {
+       
         StartCoroutine(DestroyBullet());
         
        
@@ -36,9 +46,15 @@ public class Bullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log(fireRate + "Fire rate in ")
-        rb.velocity = transform.up*bulletSpeed;
-       
+
+        BulletMoving();
+
+    }
+    public void BulletMoving()
+    {
+
+        rb.velocity = transform.up * bulletSpeed;
+        Debug.Log(bulletSpeed + "Bullet SPEED");
     }
     IEnumerator DestroyBullet()
     {

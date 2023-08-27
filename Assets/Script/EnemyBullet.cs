@@ -18,9 +18,9 @@ public class EnemyBullet : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        damage = bulletDetail.bulletStats[id-1].bulletDamage;
-        bulletSpeed = bulletDetail.bulletStats[id - 1].bulletSpeed;
-        fireRate = bulletDetail.bulletStats[id - 1].fireRate;
+        damage = bulletDetail.bulletDamage;
+        bulletSpeed = bulletDetail.bulletSpeed;
+        fireRate = bulletDetail.fireRate;
 
         rb = GetComponent<Rigidbody2D>();
         playerScript = player.GetComponent<PlayerController>();

@@ -11,8 +11,10 @@ public class PlayerController : Subject
     public int id;
     public int health=100;
     public int maxHealth = 150;
+    public int damage;
+    public int bulletSpeed;
     private float moveSpeed = 8.5f;
-    public float fireRate = 0f;
+    public float fireRate ;
     [SerializeField] private TextMeshPro healthText;
 
     private Rigidbody2D rb;
@@ -23,7 +25,8 @@ public class PlayerController : Subject
     public Bullet bulletScript;
     public VariableJoystick joystick;
     private Vector3 move;
-
+    public BulletDetail bulletDetail;
+    public BulletDetail.BulletStats bulletStats;
 
     // Start is called before the first frame update
     private void Awake()
@@ -32,8 +35,8 @@ public class PlayerController : Subject
         GameObject a=Instantiate(healthBar);
         healthBarScript= a.GetComponent<HealthBar>();
         healthBarScript.Init(this.gameObject);
-       
-        
+
+      
        
     }
     void Start()
@@ -106,10 +109,29 @@ public class PlayerController : Subject
     {
         while (true) 
         {
-            bulletScript = bullet.GetComponent<Bullet>();
             bullet.gameObject.Reuse(transform.position, transform.rotation);
-        
-            yield return new WaitForSeconds(1/bulletScript.bulletDetail.bulletStats[id-1].fireRate);
+            bulletScript = bullet.GetComponent<Bullet>();
+
+            for (int i = 0; i < bulletDetail.bulletStats.Count; i++)
+            {
+                if (id == bulletDetail.bulletStats[i].id)
+                {
+
+                    damage = bulletDetail.bulletStats[i].bulletDamage;
+                    bulletSpeed = bulletDetail.bulletStats[i].bulletSpeed;
+                    fireRate = bulletDetail.bulletStats[i].fireRate;
+                    Debug.Log(damage + "Player Damage");
+                    Debug.Log(fireRate + "Player Firerate");
+                    bulletScript.Init(id, bulletSpeed, fireRate);
+                    break;
+                }
+            }
+
+
+
+            Debug.Log("ban");
+            
+            yield return new WaitForSeconds(1/fireRate);
         }
     }
     public void OnTriggerEnter2D(Collider2D collision)
