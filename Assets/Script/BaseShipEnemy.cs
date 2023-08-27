@@ -95,8 +95,8 @@ public class BaseShipEnemy : MonoBehaviour
             
             
             bullet.gameObject.Reuse(firingPoint.transform.position, transform.rotation);
-            Debug.Log(enemyBullet.bulletDetail.fireRate);
-            yield return new WaitForSeconds(1 / enemyBullet.bulletDetail.fireRate);
+            Debug.Log(enemyBullet.bulletDetail.bulletStats[enemyBullet.id - 1].fireRate);
+            yield return new WaitForSeconds(1 / enemyBullet.bulletDetail.bulletStats[enemyBullet.id - 1].fireRate);
         }
     }
     private IEnumerator DestroyText()

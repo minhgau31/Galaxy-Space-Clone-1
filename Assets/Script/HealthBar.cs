@@ -24,12 +24,8 @@ public class HealthBar : MonoBehaviour
     }
 
     public void Update()
-    {
-        
-        FollowShip();
-       
-
-
+    {        
+        FollowShip();       
     }
     public void FollowShip()
     {

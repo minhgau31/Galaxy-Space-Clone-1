@@ -8,6 +8,7 @@ using System;
 
 public class PlayerController : Subject
 {
+    public int id;
     public int health=100;
     public int maxHealth = 150;
     private float moveSpeed = 8.5f;
@@ -55,17 +56,11 @@ public class PlayerController : Subject
     void Update()
     {
         
-        MoveShip();
-        UpdateHealthBarAndText();
-        healthBarScript.HealthBarSize(maxHealth, health);
-
-    }
-    private void UpdateHealthBarAndText()
-    {
-        healthText.text=health.ToString();
+        MoveShip();      
        
 
     }
+   
     private void MoveShip()
     {
         Quaternion target1 = Quaternion.Euler(0, 0, 0);
@@ -114,23 +109,13 @@ public class PlayerController : Subject
             bulletScript = bullet.GetComponent<Bullet>();
             bullet.gameObject.Reuse(transform.position, transform.rotation);
         
-            yield return new WaitForSeconds(1/bulletScript.bulletDetail.fireRate);
+            yield return new WaitForSeconds(1/bulletScript.bulletDetail.bulletStats[id-1].fireRate);
         }
     }
-    public void OnCollisionEnter2D(Collision2D collision)
+    public void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "bullet")
-        {
-           
-        }
-        else
-        {
-
-            
-            healthBarScript.HealthBarSize(maxHealth, health);
-            NotifyObserver(EventID.OnBulletHit);
-            Debug.Log("Collision");
-        }
+        NotifyObserver(EventID.OnBulletHit);
+        healthBarScript.HealthBarSize(maxHealth, health);
     }
 
 }

@@ -155,7 +155,8 @@ MonoBehaviour:
   Player: {fileID: 531554168}
   player: {fileID: 531554168}
   currentHealthBar: {fileID: 145542592}
-  healthBar: {fileID: 0}
+  health: 0
+  healthText: {fileID: 1944747213}
 --- !u!4 &50832326
 Transform:
   m_ObjectHideFlags: 0
@@ -673,14 +674,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1650576317}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
   m_LocalPosition: {x: 0, y: 9.813256, z: -0.15488169}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 8
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
 --- !u!114 &1650576320
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -696,6 +697,17 @@ MonoBehaviour:
   waveDetail: {fileID: 11400000, guid: 99ac182a57d0d694e9b583c654e5235f, type: 2}
   meteorite: {fileID: 6557860868938944224, guid: 30d6e753d10b87d4f91c004cae0bee40, type: 3}
   BaseShipEnemy: {fileID: 8398381234467874541, guid: 5153ff999be4946409d2cf1df406ea5e, type: 3}
+--- !u!114 &1944747213 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8399439948137259772, guid: f7ed96b4ccaad9e49ba55deb602be31a, type: 3}
+  m_PrefabInstance: {fileID: 8399439947468430387}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2053600766
 GameObject:
   m_ObjectHideFlags: 0

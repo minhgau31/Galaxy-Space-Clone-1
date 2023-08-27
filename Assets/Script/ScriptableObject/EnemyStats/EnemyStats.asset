@@ -12,6 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b799a317db9602a4c9434c2c596ef006, type: 3}
   m_Name: EnemyStats
   m_EditorClassIdentifier: 
+  stats:
+  - Health: 0
+    LookAtPlayer: 0
+    rotationSpeed: 0
+  - Health: 0
+    LookAtPlayer: 0
+    rotationSpeed: 0
   Health: 200
-  LookAtPlayer: 1
+  LookAtPlayer: 0
   rotationSpeed: 5
