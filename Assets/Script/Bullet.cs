@@ -54,9 +54,7 @@ public class Bullet : MonoBehaviour
     {
 
         rb.velocity = transform.up * bulletSpeed;
-        Debug.Log(bulletSpeed + "Bullet SPEED");
-        Debug.Log(damage + " bullet damage");
-        Debug.Log(fireRate + "Bullet SPEED");
+        
         
     }
     IEnumerator DestroyBullet()

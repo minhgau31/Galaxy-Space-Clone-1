@@ -89,7 +89,7 @@ public class BaseShipEnemy : MonoBehaviour
     {
         Health = Health - damage;
         gFloatingHealth=floatingHealth.gameObject.Reuse(this.transform.position, new Quaternion(0,0,0,0));
-        floatingHealth.GetComponentInChildren<TextMesh>().text = damage.ToString();
+        gFloatingHealth.GetComponentInChildren<TextMesh>().text = damage.ToString();
         Debug.Log(damage+" damage gay ra");
         //StartCoroutine(DestroyText());
 

@@ -27,7 +27,7 @@ public class UIShow : MonoBehaviour,IObserver
         if(eventID==EventID.OnBulletHit)
         {
             healthText.text = player.health.ToString();
-            Debug.Log(player.health);
+           
         //    currentHealthBarSize =(float)player.health / (float)player.maxHealth;
         //    healthBar.healthBar.transform.localScale = new Vector3(currentHealthBarSize, 0.1075f,1);
         //    Debug.Log(currentHealthBarSize);
