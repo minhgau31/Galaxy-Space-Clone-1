@@ -5,10 +5,10 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    private int damage=0;
-    private int playerID;
-    private int bulletSpeed=0;
-    internal float fireRate=0;
+    public int damage;
+    public int playerID;
+    public int bulletSpeed;
+    public float fireRate;
     Rigidbody2D rb;
     public BulletDetail bulletDetail;
     public BulletDetail.BulletStats bulletStats;
@@ -26,13 +26,13 @@ public class Bullet : MonoBehaviour
 
 
     }
-    public void Init(int id, int speed, float _firerate)
+    public void Init(int id, int speed, float _firerate,int _damage)
     {
         
         playerID = id;
         bulletSpeed = speed;
         fireRate = _firerate;
-      
+        damage = _damage;
      
     }
     private void OnEnable()
@@ -44,7 +44,7 @@ public class Bullet : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
 
         BulletMoving();
@@ -55,13 +55,16 @@ public class Bullet : MonoBehaviour
 
         rb.velocity = transform.up * bulletSpeed;
         Debug.Log(bulletSpeed + "Bullet SPEED");
+        Debug.Log(damage + " bullet damage");
+        Debug.Log(fireRate + "Bullet SPEED");
+        
     }
     IEnumerator DestroyBullet()
     {
         
             
             yield return new WaitForSeconds(2f);
-        gameObject.Release();
+        Destroy(this.gameObject);
        
 
 
@@ -69,11 +72,24 @@ public class Bullet : MonoBehaviour
     }
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "enemy")
+        if(this.gameObject.tag=="bullet")
         {
-           
-            collision.GetComponent<BaseShipEnemy>().LoseHealth(damage);
+            if (collision.gameObject.tag == "enemy")
+            {
+
+                collision.GetComponent<BaseShipEnemy>().LoseHealth(damage);
+            }
         }
+        if (this.gameObject.tag == "Enemybullet")
+        {
+            if (collision.gameObject.tag == "Player")
+            {
+
+                collision.GetComponent<PlayerController>().LoseHealth(damage);
+            }
+        }
+
     }
+       
 }
  

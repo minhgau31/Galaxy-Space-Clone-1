@@ -8,6 +8,7 @@ public class EnemyBullet : MonoBehaviour
     private int damage;
     private int bulletSpeed;
     internal float fireRate;
+    public int enemyID;
     public int id;
     Rigidbody2D rb;
     public BulletDetail bulletDetail;
@@ -18,9 +19,7 @@ public class EnemyBullet : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        damage = bulletDetail.bulletDamage;
-        bulletSpeed = bulletDetail.bulletSpeed;
-        fireRate = bulletDetail.fireRate;
+        
 
         rb = GetComponent<Rigidbody2D>();
         playerScript = player.GetComponent<PlayerController>();
@@ -32,11 +31,20 @@ public class EnemyBullet : MonoBehaviour
 
 
     }
+    public void Init(int id, int speed, float _firerate,int _damage)
+    {
+
+        enemyID = id;
+        bulletSpeed = speed;
+        fireRate = _firerate;
+        damage = _damage;
+
+    }
 
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log(fireRate + "Fire rate in ")
+     
         rb.velocity = transform.up * bulletSpeed;
 
     }

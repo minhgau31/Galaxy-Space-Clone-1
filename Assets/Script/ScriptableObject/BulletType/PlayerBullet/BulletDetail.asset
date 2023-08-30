@@ -12,15 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1baafd2ff60b5db4da759a491b773004, type: 3}
   m_Name: BulletDetail
   m_EditorClassIdentifier: 
-  id: 2
-  bulletDamage: 3
-  bulletSpeed: 3
-  fireRate: 4
   bulletStats:
   - id: 1
     bulletDamage: 15
     bulletSpeed: 5
-    fireRate: 15
+    fireRate: 12
   - id: 2
     bulletDamage: 10
     bulletSpeed: 7
@@ -29,3 +25,7 @@ MonoBehaviour:
     bulletDamage: 5
     bulletSpeed: 5
     fireRate: 5
+  - id: 5
+    bulletDamage: 8
+    bulletSpeed: 8
+    fireRate: 8

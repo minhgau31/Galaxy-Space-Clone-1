@@ -393,6 +393,8 @@ MonoBehaviour:
   id: 1
   health: 150
   maxHealth: 150
+  damage: 0
+  bulletSpeed: 0
   fireRate: 0.5
   healthText: {fileID: 8399439948137259772}
   bullet: {fileID: 2859697078688688521, guid: 35f53788b26819447b02fd25a3d5d248, type: 3}
@@ -400,6 +402,12 @@ MonoBehaviour:
   healthBar: {fileID: 5837471507910360172, guid: b2df90248258f5b4e8c2a542d2d82631, type: 3}
   bulletScript: {fileID: 0}
   joystick: {fileID: 0}
+  bulletDetail: {fileID: 11400000, guid: ad443d80280e51e41b0e2e2f2a1005af, type: 2}
+  bulletStats:
+    id: 0
+    bulletDamage: 0
+    bulletSpeed: 0
+    fireRate: 0
 --- !u!96 &8399439947563139914
 TrailRenderer:
   serializedVersion: 2

@@ -8,6 +8,7 @@ using System;
 
 public class PlayerController : Subject
 {
+    public int teamID=1;
     public int id;
     public int health=100;
     public int maxHealth = 150;
@@ -43,10 +44,8 @@ public class PlayerController : Subject
     {
         
         rb = GetComponent<Rigidbody2D>();
-        StartCoroutine(ShootingBullet());
-
-        
-        fireRate = bulletScript.fireRate;
+        StartCoroutine(ShootingBullet());       
+       
 
 
 
@@ -107,13 +106,20 @@ public class PlayerController : Subject
     }
     private IEnumerator ShootingBullet()
     {
+      
         while (true) 
         {
-            bullet.gameObject.Reuse(transform.position, transform.rotation);
-            bulletScript = bullet.GetComponent<Bullet>();
-
+            GameObject clonedBullet= bullet.Reuse(transform.position, this.transform.rotation);
+            bulletScript = clonedBullet.GetComponent<Bullet>();
             for (int i = 0; i < bulletDetail.bulletStats.Count; i++)
             {
+                if(teamID==1)
+                {
+                    clonedBullet.tag = "bullet";
+                    clonedBullet.GetComponent<SpriteRenderer>().color=Color.green;
+                   
+
+                }
                 if (id == bulletDetail.bulletStats[i].id)
                 {
 
@@ -122,14 +128,19 @@ public class PlayerController : Subject
                     fireRate = bulletDetail.bulletStats[i].fireRate;
                     Debug.Log(damage + "Player Damage");
                     Debug.Log(fireRate + "Player Firerate");
-                    bulletScript.Init(id, bulletSpeed, fireRate);
+                    bulletScript.Init(id, bulletSpeed, fireRate,damage);
                     break;
                 }
             }
-
-
-
-            Debug.Log("ban");
+          
+            
+            
+       
+      
+           
+          
+         
+     
             
             yield return new WaitForSeconds(1/fireRate);
         }

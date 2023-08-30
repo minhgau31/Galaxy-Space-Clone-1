@@ -217,15 +217,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e5786cb46ad0694faff9c1332765a37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyStats: {fileID: 11400000, guid: 296c82f4dae17044d88539f8aff1c52e, type: 2}
+  enemyDetail: {fileID: 11400000, guid: 296c82f4dae17044d88539f8aff1c52e, type: 2}
+  teamID: 2
+  id: 2
   Health: 150
   MaxHealth: 150
+  rotationSpeed: 0
+  lookAtPlayer: 0
   player: {fileID: 0}
-  bullet: {fileID: 2859697078688688521, guid: 6331e56160e4fff41aded3928b76b5a5, type: 3}
-  enemyBullet: {fileID: -8009108392361639760, guid: 6331e56160e4fff41aded3928b76b5a5, type: 3}
+  bullet: {fileID: 2859697078688688521, guid: 35f53788b26819447b02fd25a3d5d248, type: 3}
+  enemyBullet: {fileID: 0}
   firingPoint: {fileID: 5691954249971554414}
   floatingHealth: {fileID: 2970882533544215942, guid: c0c860d0050f3e84da11428a015baa6d, type: 3}
   gFloatingHealth: {fileID: 0}
+  bulletDetail: {fileID: 11400000, guid: ad443d80280e51e41b0e2e2f2a1005af, type: 2}
+  bulletStats:
+    id: 0
+    bulletDamage: 0
+    bulletSpeed: 0
+    fireRate: 0
+  fireRate: 0
+  damage: 0
+  bulletSpeed: 0
 --- !u!50 &8917066525141052198
 Rigidbody2D:
   serializedVersion: 4
