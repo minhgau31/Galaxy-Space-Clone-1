@@ -13,19 +13,27 @@ MonoBehaviour:
   m_Name: BulletDetail
   m_EditorClassIdentifier: 
   bulletStats:
-  - id: 1
-    bulletDamage: 15
+  - _bulletType: 0
+    id: 1
+    bulletDamage: 10
     bulletSpeed: 5
-    fireRate: 12
-  - id: 2
+    fireRate: 5
+    splashRange: 0
+  - _bulletType: 0
+    id: 2
     bulletDamage: 10
     bulletSpeed: 7
     fireRate: 4
-  - id: 3
+    splashRange: 0
+  - _bulletType: 1
+    id: 3
     bulletDamage: 5
     bulletSpeed: 5
-    fireRate: 5
-  - id: 5
+    fireRate: 2
+    splashRange: 5
+  - _bulletType: 2
+    id: 21
     bulletDamage: 8
-    bulletSpeed: 8
-    fireRate: 8
+    bulletSpeed: 2
+    fireRate: 2
+    splashRange: 0

@@ -229,7 +229,7 @@ MonoBehaviour:
   enemyBullet: {fileID: 0}
   firingPoint: {fileID: 5691954249971554414}
   floatingHealth: {fileID: 2970882533544215942, guid: c0c860d0050f3e84da11428a015baa6d, type: 3}
-  gFloatingHealth: {fileID: 0}
+  gFloatingHealth: {fileID: 2970882533544215942, guid: c0c860d0050f3e84da11428a015baa6d, type: 3}
   bulletDetail: {fileID: 11400000, guid: ad443d80280e51e41b0e2e2f2a1005af, type: 2}
   bulletStats:
     id: 0

@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 2859697078688688525}
   - component: {fileID: 2859697078688688522}
   - component: {fileID: 2859697078688688523}
-  - component: {fileID: 2859697078688688520}
   - component: {fileID: -3654178427753645718}
+  - component: {fileID: 3700875813551872490}
+  - component: {fileID: -1396853498198513235}
   m_Layer: 0
   m_Name: Bullet
   m_TagString: bullet
@@ -108,26 +109,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &2859697078688688520
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2859697078688688521}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18c382f0ec0988c4fb7a1357112272d0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  id: 1
-  bulletDetail: {fileID: 11400000, guid: ad443d80280e51e41b0e2e2f2a1005af, type: 2}
-  bulletStats:
-    id: 0
-    bulletDamage: 0
-    bulletSpeed: 0
-    fireRate: 0
-  bEnemy: {fileID: 8398381234467874540, guid: 5153ff999be4946409d2cf1df406ea5e, type: 3}
 --- !u!61 &-3654178427753645718
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -154,3 +135,51 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &3700875813551872490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2859697078688688521}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bb24d557641de446a84faf00d7ec6bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 0
+  playerID: 0
+  bulletSpeed: 0
+  fireRate: 5
+  bulletDetail: {fileID: 11400000, guid: ad443d80280e51e41b0e2e2f2a1005af, type: 2}
+  bulletStats:
+    _bulletType: 0
+    id: 0
+    bulletDamage: 0
+    bulletSpeed: 0
+    fireRate: 0
+    splashRange: 0
+--- !u!114 &-1396853498198513235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2859697078688688521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18c382f0ec0988c4fb7a1357112272d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 0
+  playerID: 0
+  bulletSpeed: 0
+  fireRate: 0
+  bulletDetail: {fileID: 11400000, guid: ad443d80280e51e41b0e2e2f2a1005af, type: 2}
+  bulletStats:
+    _bulletType: 0
+    id: 0
+    bulletDamage: 0
+    bulletSpeed: 0
+    fireRate: 0
+    splashRange: 0

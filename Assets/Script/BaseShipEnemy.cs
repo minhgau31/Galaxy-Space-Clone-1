@@ -17,6 +17,7 @@ public class BaseShipEnemy : MonoBehaviour
     public float rotationSpeed;
     public bool lookAtPlayer;
     public GameObject player;
+    public PlayerController playerScript;
     public GameObject bullet;
     public Bullet enemyBullet;
     public GameObject firingPoint;
@@ -45,6 +46,7 @@ public class BaseShipEnemy : MonoBehaviour
         Debug.Log(MaxHealth + "Max Health");
 
         player = GameObject.Find("Player");
+        playerScript = player.GetComponent<PlayerController>();
         StartCoroutine(ShootingBullet());
     }
     public void Init(DOTweenPath mainPath)
@@ -88,8 +90,14 @@ public class BaseShipEnemy : MonoBehaviour
     public void LoseHealth(int damage)
     {
         Health = Health - damage;
-        gFloatingHealth=floatingHealth.gameObject.Reuse(this.transform.position, new Quaternion(0,0,0,0));
+        gFloatingHealth=floatingHealth.gameObject.Reuse(transform.position, new Quaternion(0,0,0,0));
+       
         gFloatingHealth.GetComponentInChildren<TextMesh>().text = damage.ToString();
+        if(playerScript.isCriticalDamage==true)
+        {
+            gFloatingHealth.GetComponentInChildren<TextMesh>().color = Color.yellow;
+        }
+      
         Debug.Log(damage+" damage gay ra");
         //StartCoroutine(DestroyText());
 
@@ -111,9 +119,7 @@ public class BaseShipEnemy : MonoBehaviour
         }
     }
     private IEnumerator ShootingBullet()
-    {
-        
-       
+    {             
         while (true)
         {
 

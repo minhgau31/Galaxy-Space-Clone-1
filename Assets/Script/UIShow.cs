@@ -28,12 +28,7 @@ public class UIShow : MonoBehaviour,IObserver
         {
             healthText.text = player.health.ToString();
            
-        //    currentHealthBarSize =(float)player.health / (float)player.maxHealth;
-        //    healthBar.healthBar.transform.localScale = new Vector3(currentHealthBarSize, 0.1075f,1);
-        //    Debug.Log(currentHealthBarSize);
-        //    Debug.Log(player.health+"Health");
-        //    Debug.Log(player.maxHealth+"Max Health");
-        //    Debug.Log("Notify UISHOW");
+      
         }
        
     }

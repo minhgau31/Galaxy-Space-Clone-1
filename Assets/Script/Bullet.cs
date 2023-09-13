@@ -12,7 +12,7 @@ public class Bullet : MonoBehaviour
     Rigidbody2D rb;
     public BulletDetail bulletDetail;
     public BulletDetail.BulletStats bulletStats;
-    public BaseShipEnemy bEnemy;
+   
   
 
     // Start is called before the first frame update
@@ -21,12 +21,13 @@ public class Bullet : MonoBehaviour
 
         rb = GetComponent<Rigidbody2D>();
 
-
-
-
-
     }
-    public void Init(int id, int speed, float _firerate,int _damage)
+    public virtual void OnEnable()
+    {
+        StartCoroutine(DestroyBullet());
+    }
+   
+    public  void Init(int id, int speed, float _firerate,int _damage)
     {
         
         playerID = id;
@@ -35,47 +36,45 @@ public class Bullet : MonoBehaviour
         damage = _damage;
      
     }
-    private void OnEnable()
-    {
-       
-        StartCoroutine(DestroyBullet());
-        
-       
-    }
+   
 
     // Update is called once per frame
-    public void Update()
+    public virtual void Update()
     {
-
+        Debug.Log(playerID + "Player ID");
+        Debug.Log(bulletSpeed + "Bullet Speed");
+        Debug.Log(fireRate + "Bullet FireRate");
+        Debug.Log(damage + "Bullet damage");
         BulletMoving();
 
     }
-    public void BulletMoving()
+    public virtual void BulletMoving()
     {
 
         rb.velocity = transform.up * bulletSpeed;
         
         
     }
-    IEnumerator DestroyBullet()
+    public void DealDamageToEnemy(GameObject a,int damage)
     {
-        
-            
-            yield return new WaitForSeconds(2f);
-        Destroy(this.gameObject);
-       
-
-
-        
+        a.GetComponent<BaseShipEnemy>().LoseHealth(damage);
     }
-    public void OnTriggerEnter2D(Collider2D collision)
+
+    public virtual IEnumerator DestroyBullet()
+    {
+        yield return new WaitForSeconds(2f);
+        Destroy(this.gameObject);
+    }
+
+    public virtual void OnTriggerEnter2D(Collider2D collision)
     {
         if(this.gameObject.tag=="bullet")
         {
             if (collision.gameObject.tag == "enemy")
             {
 
-                collision.GetComponent<BaseShipEnemy>().LoseHealth(damage);
+                //collision.GetComponent<BaseShipEnemy>().LoseHealth(damage);
+                DealDamageToEnemy(collision.gameObject, damage);
             }
         }
         if (this.gameObject.tag == "Enemybullet")
