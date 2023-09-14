@@ -29,7 +29,8 @@ public class BaseShipEnemy : MonoBehaviour
     public int damage;
     public int bulletSpeed;
 
-    public void Start()
+    public virtual void Start()
+
     {
         for (int i = 0; i < enemyDetail.enemyStats.Count; i++)
         {
@@ -61,7 +62,7 @@ public class BaseShipEnemy : MonoBehaviour
     {
 
     }
-    public void Update()
+    public virtual void Update()
     {
         Death();
         LookAtPlayer();
@@ -118,7 +119,7 @@ public class BaseShipEnemy : MonoBehaviour
             this.gameObject.Release();
         }
     }
-    private IEnumerator ShootingBullet()
+    public virtual IEnumerator ShootingBullet()
     {             
         while (true)
         {
