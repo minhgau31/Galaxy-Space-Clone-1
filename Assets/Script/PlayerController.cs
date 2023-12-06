@@ -4,24 +4,27 @@ using UnityEngine;
 using ToolBox.Pools;
 using TMPro;
 using UnityEngine.UI;
+using System.Linq;
 using System;
 
 public class PlayerController : Subject
 {
     public int spawnBulletNumber;
-    internal int damageLevel;
-    internal int fireRateLevel;
+    public int damageLevel;
+    public int fireRateLevel;
     public int teamID = 1;
     public int id;
     [NonSerialized]public int chanceCriticalDamage;
     [NonSerialized] public float multiplyCriticalDamage;
     public int health = 100;
     public int maxHealth = 150;
-    public int damage;
-    public int bulletSpeed;
-    public int splashRange;
+    public int damageBoosted;
+    public int bulletSpeedBoosted;
+    public int splashRangeBoosted;
+    public float fireRateBoosted;
     private float moveSpeed = 8.5f;
-    public float fireRate;
+    
+
     public bool isCriticalDamage = false;
     [SerializeField] private TextMeshPro healthText;
 
@@ -40,14 +43,19 @@ public class PlayerController : Subject
     public BulletDetail bulletDetail;
     public BulletDetail.BulletStats bulletStats;
     public Calculator _calculator;
-    public BulletType _bulletType;
+    public ConfigReader cfgReader;
+    
     public BulletSpawner bulletSpawner;
-    public BoomSpawner boomSpawner;
-    public BoomerangSpawner boomerangSpawner;
+    public GameObject MENUUI;
+    public Vector2 spawnPosition;
+    public Sprite bulletSprite;
+    MenuUI menuUI;
+   
 
     // Start is called before the first frame update
     private void Awake()
     {
+
         spawnBulletNumber = 1;
         damageLevel = 0;
         fireRateLevel = 0;
@@ -59,15 +67,18 @@ public class PlayerController : Subject
     }
     void Start()
     {
+        MENUUI = GameObject.Find("MENUUI");
         rb = GetComponent<Rigidbody2D>();
         StartCoroutine(ShootingBullet());
+        menuUI = MENUUI.GetComponent<MenuUI>();
     }
-
     // Update is called once per frame
     void Update()
     {
+        Death();
         MoveShip();
-        Debug.Log(damage);
+        Debug.Log(fireRateBoosted+"FIRE RATE BOOSTED");
+     
     }
     #region moveShip
     private void MoveShip()
@@ -107,24 +118,7 @@ public class PlayerController : Subject
 
     }
     #endregion 
-    #region DamageLevelUP
-    public void LevelDamage()
-    {
-        damageLevel=_calculator.DamageLevelUp(damageLevel);
-    }
-    #endregion
-    #region FireRateLevelUp
-    public void FireRateLevel()
-    {
-        fireRateLevel = _calculator.FireRateLevelUp(fireRateLevel);
-    }
-    #endregion
-    #region BulletLevelUP
-    public void BulletLevel()
-    {
-        spawnBulletNumber = _calculator.BulletLevelUp(spawnBulletNumber);
-    }
-    #endregion
+   
     #region LoseHealth
     public void LoseHealth(int damage)
     {
@@ -134,11 +128,15 @@ public class PlayerController : Subject
     }
     #endregion
     #region TakeTag
-    //public void TakeTag(GameObject a)
-    //{
+    public void SpawnBullet()
+    {
+        
+
+    }
+
     //    for (int i = 0; i < bulletDetail.bulletStats.Count; i++)
     //    {
-            
+
     //        if (teamID == 1)
     //        {
     //            a.tag = "bullet";
@@ -148,7 +146,7 @@ public class PlayerController : Subject
     //        {
     //            switch(bulletDetail.bulletStats[i]._bulletType)
     //            {
-                   
+
     //                case BulletType.Normal:
     //                 damage = bulletDetail.bulletStats[i].bulletDamage;
     //                 bulletSpeed = bulletDetail.bulletStats[i].bulletSpeed;
@@ -170,9 +168,9 @@ public class PlayerController : Subject
     //                    fireRate = bulletDetail.bulletStats[i].fireRate;
     //                    boomerangScript.Init(id, bulletSpeed, fireRate, damage);
     //                    break;
-    //            }
-               
-               
+
+
+
 
     //            break;
     //        }
@@ -180,55 +178,24 @@ public class PlayerController : Subject
     //}
     #endregion
     #region ShootingBullet Ienumerator
+    public void Death()
+    {
+        if (health <= 0)
+        {          
+            menuUI.playerDeath();         
+        }
+    }
     private IEnumerator ShootingBullet()
     {
 
         while (true)
         {
-           
+            spawnPosition = new Vector2(transform.position.x - (spawnBulletNumber - 1) * 0.1f, transform.position.y);
             //Spawnbullet number phai -1 vì đó là số khoảng trống giữa các bullet nếu có 2 bullet thì khoảng trống sẽ là 1 còn 3 bullet thì có 2 khoảng trống
-            Vector2 spawnPosition = new Vector2(transform.position.x -(spawnBulletNumber -1)* 0.1f, transform.position.y);
-            for (int i = 0; i < spawnBulletNumber; i++)
-            {
-
-                bulletSpawner.SpawnBullet();
-                boomSpawner.SpawnBullet();
-                boomerangSpawner.SpawnBullet();
-
-
-                //for (int j = 0; j < bulletDetail.bulletStats.Count; j++)
-                //{
-                //    if (id == bulletDetail.bulletStats[j].id)
-                //    {
-                //        switch (bulletDetail.bulletStats[j]._bulletType)
-                //        {
-                //            case BulletType.Normal:
-                //                GameObject clonedBullet = bullet.Reuse(spawnPosition, this.transform.rotation);
-                //                spawnPosition.x = spawnPosition.x + 0.2f;
-                //                bulletScript = clonedBullet.GetComponent<Bullet>();
-                //               // TakeTag(clonedBullet);
-                //                break;
-                //            case BulletType.Boom:
-                //                GameObject clonedBullet1 = boomBullet.Reuse(spawnPosition, this.transform.rotation);
-                //                spawnPosition.x = spawnPosition.x + 0.2f;
-                //                boomScript = clonedBullet1.GetComponent<Boom>();
-                //               // TakeTag(clonedBullet1);
-                //                break;
-                //            case BulletType.Boomerang:
-                //                GameObject clonedBullet2 = boomerangBullet.Reuse(spawnPosition, this.transform.rotation);
-                //                spawnPosition.x = spawnPosition.x + 0.2f;
-                //                boomerangScript = clonedBullet2.GetComponent<Boomerang>();
-                //               // TakeTag(clonedBullet2);
-                //                break;
-                //        }
-                //    }
-                //}
-
-
-            }   
-               
-
-            yield return new WaitForSeconds(1 / fireRate);
+           BulletDetail.BulletStats _bulletStats =cfgReader.GetBulletStats(id, teamID);
+            bulletSpawner.SpawnBullet(_bulletStats._bulletType, _bulletStats.bulletDamage+ damageLevel, _bulletStats.bulletSpeed, _bulletStats.fireRate+ fireRateLevel+fireRateBoosted, _bulletStats.splashRange, spawnBulletNumber, spawnPosition,bulletSprite);        
+            
+            yield return new WaitForSeconds(1 / (_bulletStats.fireRate+fireRateBoosted+fireRateLevel));
         }
 
     }

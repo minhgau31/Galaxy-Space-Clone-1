@@ -21,6 +21,11 @@ public class Calculator : MonoBehaviour
         }
         return damage;
     }
+    public int IncreaseMaxHealth(int Health)
+    {
+        Health = Health + 10;
+        return Health;
+    }    
     public int DamageLevelUp(int damageLevel)
     {
         damageLevel++;
@@ -36,4 +41,5 @@ public class Calculator : MonoBehaviour
         numberBullet++;
         return numberBullet;
     }
+
 }

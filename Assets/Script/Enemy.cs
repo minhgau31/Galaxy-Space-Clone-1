@@ -8,7 +8,7 @@ public class Enemy : BaseShipEnemy
     public Rigidbody2D rb;
     private int moveSpeed = 20;
     // Start is called before the first frame update
-    public override void Start()
+    public void Start()
     {
         rb = GetComponent<Rigidbody2D>();
     }

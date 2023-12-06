@@ -25,7 +25,11 @@ public class Boomerang : Bullet
     // Update is called once per frame
    public override void Update()
     {
-        if(go)
+        Return();
+    }
+    private void Return()
+    {
+        if (go)
         {
             transform.position = Vector3.MoveTowards(transform.position, playerForward, Time.deltaTime * 10);
         }
@@ -33,7 +37,7 @@ public class Boomerang : Bullet
         {
             transform.position = Vector3.MoveTowards(transform.position, player.transform.position, Time.deltaTime * 10);
         }
-        if (!go&& Vector2.Distance(player.transform.position,transform.position)<1.5)
+        if (!go && Vector2.Distance(player.transform.position, transform.position) < 1.5)
         {
             Destroy(gameObject);
         }
@@ -50,8 +54,7 @@ public class Boomerang : Bullet
        
             if (collision.gameObject.tag == "enemy")
             {
-
-            DealDamageToEnemy(collision.gameObject,damage);
+                 DealDamageToEnemy(collision.gameObject,damage);
                 Debug.Log(damage + "Boomerang damage");
             }
         

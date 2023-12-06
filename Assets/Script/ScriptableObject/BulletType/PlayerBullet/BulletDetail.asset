@@ -37,3 +37,21 @@ MonoBehaviour:
     bulletSpeed: 2
     fireRate: 2
     splashRange: 0
+  - _bulletType: 0
+    id: 5
+    bulletDamage: 5
+    bulletSpeed: 4
+    fireRate: 1
+    splashRange: 0
+  - _bulletType: 0
+    id: 6
+    bulletDamage: 8
+    bulletSpeed: 4
+    fireRate: 1
+    splashRange: 0
+  - _bulletType: 0
+    id: 7
+    bulletDamage: 10
+    bulletSpeed: 3
+    fireRate: 0.5
+    splashRange: 0

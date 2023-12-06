@@ -13,6 +13,8 @@ public class WaveDetail : ScriptableObject
     public class Wave
     {
         [SerializeField]
+        public float timerinSecond;
+        public WaveType waveType;
         public List<EnemySpawn> enemySpawnList;
         public int totalEnemyInWave
         {
@@ -26,4 +28,9 @@ public class WaveDetail : ScriptableObject
 
     [SerializeField]
     public List<Wave> waveList;
+}
+public enum WaveType
+{
+    Normal,
+    Time,
 }

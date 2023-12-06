@@ -12,9 +12,9 @@ public class Boom : Bullet
     {
        
     }
-    public void Init(int id, int speed, float _firerate, int _damage,int _splashRange)
+    public void Init(int speed, float _firerate, int _damage,int _splashRange)
     {
-        playerID = id;
+        
         bulletSpeed = speed;
         fireRate = _firerate;
         damage = _damage;

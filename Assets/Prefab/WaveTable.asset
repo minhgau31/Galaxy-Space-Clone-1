@@ -13,11 +13,27 @@ MonoBehaviour:
   m_Name: WaveTable
   m_EditorClassIdentifier: 
   waveList:
-  - enemySpawnList:
+  - timerinSecond: 40
+    waveType: 1
+    enemySpawnList:
     - timeStart: 0
-      timeDelay: 3
+      timeDelay: 1
       enemyType: 1
-      enemyNum: 1
+      enemyNum: 5
       Position: {x: 0, y: 0, z: 0}
       mainPath: {fileID: 3222526481384172227, guid: 24ff3a23d2b76c34ba7972891d77ea81, type: 3}
-  - enemySpawnList: []
+      additionPath: {fileID: 0}
+    - timeStart: 6
+      timeDelay: 1
+      enemyType: 2
+      enemyNum: 3
+      Position: {x: 0, y: 0, z: 0}
+      mainPath: {fileID: 5450098219907775680, guid: 24857bb9d25bb3c4995debeb4b2680e7, type: 3}
+      additionPath: {fileID: 0}
+    - timeStart: 12
+      timeDelay: 1
+      enemyType: 2
+      enemyNum: 5
+      Position: {x: 0, y: 0, z: 0}
+      mainPath: {fileID: 7336761423616614073, guid: a30427870649d354f92d465c9e8ee477, type: 3}
+      additionPath: {fileID: 8102917204172938381, guid: accd793f3adda7a488a6408b5cf5ab6b, type: 3}

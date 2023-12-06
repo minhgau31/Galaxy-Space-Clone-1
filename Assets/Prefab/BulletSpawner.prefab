@@ -44,4 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4df637aaedb79e24688546628c13955a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerController: {fileID: 8399439947563139915, guid: f7ed96b4ccaad9e49ba55deb602be31a, type: 3}
+  playerController: {fileID: 0}
+  normalBullet: {fileID: 2859697078688688521, guid: 35f53788b26819447b02fd25a3d5d248, type: 3}
+  boomerangBullet: {fileID: 6883939986150726691, guid: e0d7baa145e550c458712856ddbc26b4, type: 3}
+  boomBullet: {fileID: 9166182677160119989, guid: 511a7faaab48c22418dc5629f82e07f2, type: 3}
+  bulletScript: {fileID: -1396853498198513235, guid: 35f53788b26819447b02fd25a3d5d248, type: 3}
+  boomScript: {fileID: -2361704366150945179, guid: 511a7faaab48c22418dc5629f82e07f2, type: 3}
+  boomerangScript: {fileID: 5074636872090154419, guid: e0d7baa145e550c458712856ddbc26b4, type: 3}

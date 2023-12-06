@@ -1,0 +1,347 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8648369852263583870
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4809164309986052553}
+  - component: {fileID: 8102917204172938381}
+  m_Layer: 0
+  m_Name: Addition Path 4
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4809164309986052553
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8648369852263583870}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4.3610697, y: 0.6955061, z: -1.1132058}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8102917204172938381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8648369852263583870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -333801856, guid: aa0b1eebb5db27a419fa4564bbe5c9c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  updateType: 0
+  isSpeedBased: 0
+  hasOnStart: 0
+  hasOnPlay: 0
+  hasOnUpdate: 0
+  hasOnStepComplete: 0
+  hasOnComplete: 0
+  hasOnTweenCreated: 0
+  hasOnRewind: 0
+  onStart:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onPlay:
+    m_PersistentCalls:
+      m_Calls: []
+  onUpdate:
+    m_PersistentCalls:
+      m_Calls: []
+  onStepComplete:
+    m_PersistentCalls:
+      m_Calls: []
+  onComplete:
+    m_PersistentCalls:
+      m_Calls: []
+  onTweenCreated:
+    m_PersistentCalls:
+      m_Calls: []
+  onRewind:
+    m_PersistentCalls:
+      m_Calls: []
+  delay: 0
+  duration: 10
+  easeType: 37
+  easeCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: -0.07500076
+      value: -0.07783127
+      inSlope: 1.002633
+      outSlope: 1.002633
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1.002633
+      outSlope: 1.002633
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  loops: -1
+  id: 
+  loopType: 0
+  orientType: 0
+  lookAtTransform: {fileID: 0}
+  lookAtPosition: {x: 0, y: 0, z: 0}
+  lookAhead: 0.01
+  autoPlay: 1
+  autoKill: 1
+  relative: 0
+  isLocal: 0
+  isClosedPath: 0
+  pathResolution: 10
+  pathMode: 2
+  lockRotation: 0
+  assignForwardAndUp: 0
+  forwardDirection: {x: 0, y: 0, z: 1}
+  upDirection: {x: 0, y: 1, z: 0}
+  tweenRigidbody: 0
+  wps:
+  - {x: 2.298035, y: 2.908023, z: 0}
+  - {x: -0.09148772, y: 0.15474665, z: 0}
+  - {x: -2.4469666, y: 0.3447045, z: 0}
+  - {x: -3.3967564, y: 2.244283, z: 0}
+  - {x: -1.0032862, y: 4.1818542, z: 0}
+  - {x: 0.82031024, y: 3.83993, z: 0}
+  - {x: 2.298035, y: 2.908023, z: 0}
+  fullWps: []
+  path:
+    wpLengths:
+    - 0
+    - 7.117333
+    - 3.8974686
+    - 2.4656122
+    - 2.25752
+    - 3.1285272
+    - 1.9116112
+    - 1.751373
+    wps:
+    - {x: -4.3610697, y: 0.6955061, z: -1.1132058}
+    - {x: 2.298035, y: 2.908023, z: 0}
+    - {x: -0.09148772, y: 0.15474665, z: 0}
+    - {x: -2.4469666, y: 0.3447045, z: 0}
+    - {x: -3.3967564, y: 2.244283, z: 0}
+    - {x: -1.0032862, y: 4.1818542, z: 0}
+    - {x: 0.82031024, y: 3.83993, z: 0}
+    - {x: 2.298035, y: 2.908023, z: 0}
+    type: 1
+    subdivisionsXSegment: 10
+    subdivisions: 80
+    controlPoints:
+    - a: {x: 2.298035, y: 2.908023, z: 0}
+      b: {x: 0, y: 0, z: 0}
+    - a: {x: 3.7757597, y: 1.9761162, z: 0}
+      b: {x: 0, y: 0, z: 0}
+    length: 22.534008
+    isFinalized: 1
+    timesTable:
+    - 0.0125
+    - 0.025
+    - 0.0375
+    - 0.05
+    - 0.0625
+    - 0.075
+    - 0.0875
+    - 0.1
+    - 0.112500004
+    - 0.125
+    - 0.1375
+    - 0.15
+    - 0.16250001
+    - 0.175
+    - 0.1875
+    - 0.2
+    - 0.2125
+    - 0.22500001
+    - 0.2375
+    - 0.25
+    - 0.26250002
+    - 0.275
+    - 0.2875
+    - 0.3
+    - 0.3125
+    - 0.32500002
+    - 0.3375
+    - 0.35
+    - 0.3625
+    - 0.375
+    - 0.38750002
+    - 0.4
+    - 0.4125
+    - 0.425
+    - 0.4375
+    - 0.45000002
+    - 0.4625
+    - 0.475
+    - 0.4875
+    - 0.5
+    - 0.5125
+    - 0.52500004
+    - 0.5375
+    - 0.55
+    - 0.5625
+    - 0.575
+    - 0.58750004
+    - 0.6
+    - 0.6125
+    - 0.625
+    - 0.6375
+    - 0.65000004
+    - 0.6625
+    - 0.675
+    - 0.6875
+    - 0.7
+    - 0.71250004
+    - 0.725
+    - 0.7375
+    - 0.75
+    - 0.7625
+    - 0.77500004
+    - 0.7875
+    - 0.8
+    - 0.8125
+    - 0.825
+    - 0.83750004
+    - 0.85
+    - 0.8625
+    - 0.875
+    - 0.8875
+    - 0.90000004
+    - 0.9125
+    - 0.925
+    - 0.9375
+    - 0.95
+    - 0.96250004
+    - 0.975
+    - 0.9875
+    - 1
+    lengthsTable:
+    - 0.1398305
+    - 0.52653027
+    - 1.110917
+    - 1.8438184
+    - 2.676081
+    - 3.5585759
+    - 4.4422207
+    - 5.278021
+    - 6.017168
+    - 6.611325
+    - 7.013839
+    - 7.2086177
+    - 7.3417325
+    - 7.544994
+    - 7.8386955
+    - 8.208612
+    - 8.633907
+    - 9.091888
+    - 9.559187
+    - 10.012184
+    - 10.427236
+    - 10.78094
+    - 11.051778
+    - 11.28433
+    - 11.513749
+    - 11.741591
+    - 11.968414
+    - 12.19393
+    - 12.417166
+    - 12.636616
+    - 12.850373
+    - 13.056234
+    - 13.251798
+    - 13.434554
+    - 13.610425
+    - 13.799961
+    - 14.000991
+    - 14.209734
+    - 14.422384
+    - 14.635277
+    - 14.845077
+    - 15.049006
+    - 15.245185
+    - 15.433119
+    - 15.614373
+    - 15.794651
+    - 16.002924
+    - 16.246628
+    - 16.520378
+    - 16.817093
+    - 17.128887
+    - 17.44746
+    - 17.764292
+    - 18.07076
+    - 18.358227
+    - 18.618134
+    - 18.84218
+    - 19.03424
+    - 19.213768
+    - 19.385382
+    - 19.55253
+    - 19.717627
+    - 19.882069
+    - 20.046383
+    - 20.210419
+    - 20.373554
+    - 20.534906
+    - 20.693518
+    - 20.848803
+    - 21.002413
+    - 21.155376
+    - 21.308163
+    - 21.461046
+    - 21.614151
+    - 21.767479
+    - 21.920954
+    - 22.074455
+    - 22.227852
+    - 22.381046
+    - 22.534008
+  inspectorMode: 0
+  pathType: 1
+  handlesType: 0
+  livePreview: 1
+  handlesDrawMode: 0
+  perspectiveHandleSize: 0.5
+  showIndexes: 1
+  showWpLength: 0
+  pathColor: {r: 1, g: 1, b: 1, a: 0.5}
+  lastSrcPosition: {x: -4.3610697, y: 0.6955061, z: -1.1132058}
+  lastSrcRotation: {x: 0, y: 0, z: 0, w: 1}
+  wpsDropdown: 1
+  dropToFloorOffset: 0

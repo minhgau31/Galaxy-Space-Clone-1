@@ -7,6 +7,10 @@ using UnityEngine;
     {
         None = 0,
         OnBulletHit,
+        ChangedPoint,
+        OpenStartUI,
+        OpenPauseUI,
+        OpenDeathUI,
     }
    
 

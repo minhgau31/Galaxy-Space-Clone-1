@@ -17,7 +17,14 @@ MonoBehaviour:
     Health: 150
     LookAtPlayer: 0
     rotationSpeed: 5
+    point: 300
   - id: 2
-    Health: 100
+    Health: 70
     LookAtPlayer: 1
     rotationSpeed: 4
+    point: 500
+  - id: 3
+    Health: 500
+    LookAtPlayer: 1
+    rotationSpeed: 3
+    point: 1000

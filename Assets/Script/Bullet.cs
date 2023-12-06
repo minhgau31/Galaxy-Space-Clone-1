@@ -12,13 +12,15 @@ public class Bullet : MonoBehaviour
     Rigidbody2D rb;
     public BulletDetail bulletDetail;
     public BulletDetail.BulletStats bulletStats;
-   
-  
+    public GameObject gameManager;
+    private GameManager _gameManager;
+
 
     // Start is called before the first frame update
     void Awake()
     {
-
+        gameManager = GameObject.Find("GameManager");
+        _gameManager = gameManager.GetComponent<GameManager>();
         rb = GetComponent<Rigidbody2D>();
 
     }
@@ -27,10 +29,10 @@ public class Bullet : MonoBehaviour
         StartCoroutine(DestroyBullet());
     }
    
-    public  void Init(int id, int speed, float _firerate,int _damage)
+    public  void Init( int speed, float _firerate,int _damage)
     {
-        
-        playerID = id;
+
+        _gameManager.bullet.Add(this.gameObject);
         bulletSpeed = speed;
         fireRate = _firerate;
         damage = _damage;
@@ -41,7 +43,7 @@ public class Bullet : MonoBehaviour
     // Update is called once per frame
     public virtual void Update()
     {
-        Debug.Log(playerID + "Player ID");
+       
         Debug.Log(bulletSpeed + "Bullet Speed");
         Debug.Log(fireRate + "Bullet FireRate");
         Debug.Log(damage + "Bullet damage");
@@ -59,11 +61,18 @@ public class Bullet : MonoBehaviour
     {
         a.GetComponent<BaseShipEnemy>().LoseHealth(damage);
     }
+    public void DealDamageToPlayer(GameObject a, int damage)
+    {
+        a.GetComponent<PlayerController>().LoseHealth(damage);
+    }
+
 
     public virtual IEnumerator DestroyBullet()
     {
         yield return new WaitForSeconds(2f);
-        Destroy(this.gameObject);
+        BulletDestroy();
+
+
     }
 
     public virtual void OnTriggerEnter2D(Collider2D collision)
@@ -72,7 +81,7 @@ public class Bullet : MonoBehaviour
         {
             if (collision.gameObject.tag == "enemy")
             {
-
+                BulletDestroy();
                 //collision.GetComponent<BaseShipEnemy>().LoseHealth(damage);
                 DealDamageToEnemy(collision.gameObject, damage);
             }
@@ -81,11 +90,18 @@ public class Bullet : MonoBehaviour
         {
             if (collision.gameObject.tag == "Player")
             {
-
-                collision.GetComponent<PlayerController>().LoseHealth(damage);
+                BulletDestroy();
+                DealDamageToPlayer(collision.gameObject, damage);
             }
         }
 
+    }
+    public void BulletDestroy()
+    {
+        this.gameObject.Release();
+        _gameManager.bullet.Remove(this.gameObject);
+        this.gameObject.tag = "Untagged";
+        this.GetComponent<SpriteRenderer>().color = Color.white;
     }
        
 }

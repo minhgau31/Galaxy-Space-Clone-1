@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3074294290937822168
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3074294290937822170}
+  - component: {fileID: 3074294290937822117}
+  m_Layer: 0
+  m_Name: WaveManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3074294290937822170
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3074294290937822168}
+  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
+  m_LocalPosition: {x: 0, y: 4.63, z: -0.15488169}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
+--- !u!114 &3074294290937822117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3074294290937822168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 010f86c43e274c24ea37554c77ec09f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waveDetail: {fileID: 11400000, guid: 99ac182a57d0d694e9b583c654e5235f, type: 2}
+  currentEnemyDestroy: 0
+  wave:
+    timerinSecond: 0
+    waveType: 0
+    enemySpawnList: []
+  currentWaveList: 0
+  meteorite: {fileID: 6557860868938944224, guid: 30d6e753d10b87d4f91c004cae0bee40, type: 3}
+  BaseShipEnemy: {fileID: 8398381234467874541, guid: 54327fb9e1b73a549bf552f8df821d9c, type: 3}
+  EnemyShipRed: {fileID: 8398381234467874541, guid: 5153ff999be4946409d2cf1df406ea5e, type: 3}
+  Boss: {fileID: 8398381234467874541, guid: d805a6a151ec8224791f2988b42ab14b, type: 3}
+  gameManager: {fileID: 0}
+  _gameManager: {fileID: 0}
+  timerCount: 0
+  isTimer: 0

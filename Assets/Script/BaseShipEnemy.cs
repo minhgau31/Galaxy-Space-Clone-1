@@ -8,13 +8,16 @@ using UnityEngine.Animations;
 
 public class BaseShipEnemy : MonoBehaviour
 {
-    private DOTweenPath path;
+    public DOTweenPath path;
+    public DOTweenPath additionPath;
     public EnemyDetail enemyDetail;
     public int teamID;
     public int id;
+    public int bulletID;
     public int Health;
     public int MaxHealth;
     public float rotationSpeed;
+    public int enemyPoint;
     public bool lookAtPlayer;
     public GameObject player;
     public PlayerController playerScript;
@@ -28,53 +31,122 @@ public class BaseShipEnemy : MonoBehaviour
     public float fireRate;
     public int damage;
     public int bulletSpeed;
+    public event Action OnEnemyDestroy;
+    public bool isMove=false;
+    public bool isInit = false;
+    public GameObject gameManager;
+    public GameManager _gameManager;
+    public Sprite bulletSprite;
 
     public virtual void Start()
 
     {
+        gameManager = GameObject.Find("GameManager");
+        _gameManager = gameManager.GetComponent<GameManager>();
+        Debug.Log(MaxHealth + "Max Health");
+        player = GameObject.Find("Player");
+        playerScript = player.GetComponent<PlayerController>();
+        
+    }
+    public void Init(DOTweenPath mainPath, DOTweenPath _additionpath)
+    {
+        
+        isInit = true;
+        isMove = true;
+        path = mainPath;
+        additionPath = _additionpath;
+        transform.position = path.wps[0];
         for (int i = 0; i < enemyDetail.enemyStats.Count; i++)
         {
             if (id == enemyDetail.enemyStats[i].id)
             {
+                if (id == enemyDetail.enemyStats[i].id)
+                {
+                    Health = enemyDetail.enemyStats[i].Health;
+                    rotationSpeed = enemyDetail.enemyStats[i].rotationSpeed;
+                    lookAtPlayer = enemyDetail.enemyStats[i].LookAtPlayer;
+                    MaxHealth = enemyDetail.enemyStats[i].Health;
+                    enemyPoint = enemyDetail.enemyStats[i].point;
+                    break;
+                }
 
-                Health = enemyDetail.enemyStats[i].Health;
-                rotationSpeed = enemyDetail.enemyStats[i].rotationSpeed;
-                lookAtPlayer = enemyDetail.enemyStats[i].LookAtPlayer;
-                MaxHealth = enemyDetail.enemyStats[i].Health;
+
                 break;
             }
         }
-        Debug.Log(MaxHealth + "Max Health");
-
-        player = GameObject.Find("Player");
-        playerScript = player.GetComponent<PlayerController>();
-        StartCoroutine(ShootingBullet());
-    }
-    public void Init(DOTweenPath mainPath)
-    {
-        enemyBullet = bullet.GetComponent<Bullet>();
-        
-        path = mainPath;   
-        Move();
        
-    }
-    public void OnEnable()
-    {
+        Health = MaxHealth;
+        enemyBullet = bullet.GetComponent<Bullet>();                        
+        Move();
+        StartCoroutine(ShootingBullet());
 
+    }
+    //public  void OnEnable()
+    //{
+    //    for (int i = 0; i < enemyDetail.enemyStats.Count; i++)
+    //    {
+    //        if (id == enemyDetail.enemyStats[i].id)
+    //        {
+    //            Health = enemyDetail.enemyStats[i].Health;
+    //            rotationSpeed = enemyDetail.enemyStats[i].rotationSpeed;
+    //            lookAtPlayer = enemyDetail.enemyStats[i].LookAtPlayer;
+    //            MaxHealth = enemyDetail.enemyStats[i].Health;
+    //            break;
+    //        }
+    //    }
+       
+    //}
+    
+    private void EnemyDetail(int index)
+    {
+       
     }
     public virtual void Update()
     {
-        Death();
-        LookAtPlayer();
+       
+            Debug.Log("aloo");
+            Death();
+            LookAtPlayer();
+
+        
     }
     public void Move()
     {
+
         transform.position = path.wps[0];
+
         transform.DOPath(path.wps.ToArray(), path.duration, path.pathType, PathMode.TopDown2D, path.pathResolution)
-                   .SetLoops(path.loops, path.loopType);
-        
+            .SetOptions(path.isClosedPath)
+            .SetDelay(path.delay)
+            .SetLoops(path.loops, path.loopType)
+            .SetSpeedBased(path.isSpeedBased)
+            .SetEase(path.easeCurve)
+            .onComplete += delegate
+            {
+                if (!additionPath)
+                {
+                    DeathByEndPath();
+                    Debug.Log("END OF ROAD");
+                }
+                else
+                {
+                    ContinueAdditionPath();
+                }
+            };
     }
-    public void LookAtPlayer()
+        
+    public void ContinueAdditionPath()
+    {
+        transform.DOPath(additionPath.wps.ToArray(), additionPath.duration, additionPath.pathType, PathMode.TopDown2D, additionPath.pathResolution)
+     .SetOptions(additionPath.isClosedPath)
+     .SetDelay(additionPath.delay)
+     .SetLoops(additionPath.loops, additionPath.loopType)
+     .SetSpeedBased(additionPath.isSpeedBased)
+     .SetEase(additionPath.easeCurve);
+    }
+    
+    
+        public void LookAtPlayer()
     {
         if (lookAtPlayer == true)
         {
@@ -98,11 +170,15 @@ public class BaseShipEnemy : MonoBehaviour
         {
             gFloatingHealth.GetComponentInChildren<TextMesh>().color = Color.yellow;
         }
-      
+        AudioManager.Instance.PlaySFX("GetHit");
         Debug.Log(damage+" damage gay ra");
         //StartCoroutine(DestroyText());
 
 
+    }
+    public void Reset()
+    {
+       
     }
     public void OnCollisionEnter2D(Collision2D collision)
     {
@@ -111,12 +187,48 @@ public class BaseShipEnemy : MonoBehaviour
             
         }
     }
+   
+    public void DeathByEndPath()
+    {
+        transform.DOKill();
+        Debug.Log("Deathhhhhhh");
+     
+        if (OnEnemyDestroy != null)
+        {
+
+            OnEnemyDestroy();
+            OnEnemyDestroy = null;
+        }
+
+        gameObject.Release();
+    }
+    public void DestroySelf()
+    {
+        gameObject.Release();
+        transform.DOKill();
+        OnEnemyDestroy = null;
+    }    
     public void Death()
     {
+       
         if (Health <= 0) 
         {
-            Debug.Log("Death");
-            this.gameObject.Release();
+            AudioManager.Instance.PlaySFX("Explosion");
+            transform.DOKill();
+            Debug.Log("Deathhhhhhh");
+            _gameManager.currentPoint += enemyPoint;
+            if (OnEnemyDestroy!=null)
+            {
+                
+                OnEnemyDestroy();
+                OnEnemyDestroy = null;
+            }
+            
+            gameObject.Release();
+                            
+            
+
+
         }
     }
     public virtual IEnumerator ShootingBullet()
@@ -124,23 +236,22 @@ public class BaseShipEnemy : MonoBehaviour
         while (true)
         {
 
-            GameObject clonedBullet = bullet.Reuse(transform.position, this.transform.rotation);
+            GameObject clonedBullet = bullet.Reuse(firingPoint.transform.position, this.transform.rotation);
             enemyBullet = clonedBullet.GetComponent<Bullet>();
             for (int i = 0; i < bulletDetail.bulletStats.Count; i++)
             {
                 if(teamID==2)
                 {
                     clonedBullet.tag = "Enemybullet";
-                    clonedBullet.GetComponent<SpriteRenderer>().color = Color.red;
+                    clonedBullet.GetComponent<SpriteRenderer>().sprite = bulletSprite;
+                    Animator animator = clonedBullet.GetComponent<Animator>();
+                    animator.SetBool("PurpleBullet",true);
+                    animator.SetBool("RedBullet", false);
                 }
-                if (id == bulletDetail.bulletStats[i].id)
+                if (bulletID == bulletDetail.bulletStats[i].id)
                 {
 
-                    damage = bulletDetail.bulletStats[i].bulletDamage;
-                    bulletSpeed = bulletDetail.bulletStats[i].bulletSpeed;
-                    fireRate = bulletDetail.bulletStats[i].fireRate;
-                    
-                    enemyBullet.Init(id, bulletSpeed, fireRate,damage);
+                    GetBulletStat(i);
                     break;
                 }
             }
@@ -149,6 +260,14 @@ public class BaseShipEnemy : MonoBehaviour
             yield return new WaitForSeconds(1 /fireRate);
         }
     }
+    public void GetBulletStat(int index)
+    {
+        damage = bulletDetail.bulletStats[index].bulletDamage;
+        bulletSpeed = bulletDetail.bulletStats[index].bulletSpeed;
+        fireRate = bulletDetail.bulletStats[index].fireRate;
+
+        enemyBullet.Init(bulletSpeed, fireRate, damage);
+    }    
     private IEnumerator DestroyText()
     {
         yield return new WaitForSeconds(1f);

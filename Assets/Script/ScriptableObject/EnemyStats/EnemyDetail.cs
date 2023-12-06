@@ -14,6 +14,7 @@ public class EnemyDetail : ScriptableObject
         public int Health;
         public bool LookAtPlayer;
         public float rotationSpeed;
+        public int point;
     }
     public List<EnemyStats> enemyStats;
 }

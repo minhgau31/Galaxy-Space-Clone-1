@@ -6,4 +6,6 @@ public enum EnemyType
 {
     Meteorite,
     BaseEnemyShip,
+    EnemyShipRed,
+    Boss,
 }

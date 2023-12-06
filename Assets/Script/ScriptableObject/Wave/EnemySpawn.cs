@@ -12,4 +12,5 @@ public class EnemySpawn
      public int enemyNum;
      public Vector3 Position;
      public DOTweenPath mainPath;
+    public DOTweenPath additionPath;
 }
